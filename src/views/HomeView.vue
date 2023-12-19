@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    1
     <div>
       <router-link to="/bau-cua">bau cua</router-link>
     </div>
