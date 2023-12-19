@@ -3,10 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import './assets/less/reset.less'
+// import './assets/less/reset.less'
 import './assets/less/common.less'
 
-import './utils/rem'
+// import './utils/rem'
 
 Vue.config.productionTip = false
 
