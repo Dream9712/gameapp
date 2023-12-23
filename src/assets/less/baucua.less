@@ -158,6 +158,341 @@
     animation-name: flash2-data;
 }
 
+
+.theme-blue .bet-input-panel .bet-info:after, 
+.theme-dark .bet-input-panel .bet-info:after, 
+.theme-green .bet-input-panel .bet-info:after,
+ .theme-purple .bet-input-panel .bet-info:after,
+  .theme-red .bet-input-panel .bet-info:after {
+    background-color: #e7ebf2;
+    box-shadow: inset 0 .5px 0 #dadee4;
+}
+.bet-input-panel {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+    #canvas_xodi_chip {
+        canvas {
+            position: absolute;
+        }
+    }
+    .bet-info {
+        background: #f4f6fb;
+        box-shadow: 0 -6px 20px rgba(161,174,200,.2),inset 0 .5px 0 #fff;
+        line-height: 1.74;
+        color: #3e4558;
+        font-size: .98em;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        box-sizing: border-box;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        border-radius: .856em;
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4.135rem;
+            z-index: 0;
+            transition-property: background,color,translate3d,border,box-shadow;
+        }
+        &.bet_taste {
+            background-color: transparent;
+            max-width: 428px;
+            box-shadow: none!important;
+            &:after {
+                background-color: transparent;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                width: 43.616em;
+                height: 5.888em;
+                background-image: url(../images/css_sprites.42d662b7.png);
+                background-position-x: -79.018em;
+                background-position-y: -0.363em;
+                background-size: auto 6.615em;
+                background-repeat: no-repeat;
+            }
+            &.fsc {
+                .plays_item_dots {
+                    .plays_item_dot {
+                        width: 1.16em;
+                    }
+                }
+                &:after {
+                    background-color: transparent;
+                    width: 43.616em;
+                    height: 5.888em;
+                    background-image: url(../images/css_sprites.2affc8c5.png);
+                    background-position-x: -133.03em;
+                    background-position-y: -0.363em;
+                    background-size: auto 6.615em;
+                    background-repeat: no-repeat;
+                }
+            }
+            &.k3 {
+                .plays_item_dots {
+                    .plays_item_dot {
+                        width: 1.16em;
+                    }
+                }
+                &:after {
+                    background-color: transparent;
+                    width: 43.616em;
+                    height: 5.888em;
+                    background-image: url(../images/css_sprites.2affc8c5.png);
+                    background-position-x: -133.03em;
+                    background-position-y: -0.363em;
+                    background-size: auto 6.615em;
+                    background-repeat: no-repeat;
+                }
+                
+            }
+            .plays_item_dots {
+                height: 0.2em;
+                padding-top: 0;
+                box-sizing: border-box;
+                .plays_item_dot {
+                    width: 1.89em;
+                    height: 2px;
+                    background: #fff;
+                    border-radius: 2px;
+                    opacity: .2;
+                    margin: 0 3px;
+                    &.active {
+                        opacity: .8;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.bet_panel_taste {
+        height: 9.8em;
+        box-shadow: none!important;
+        .bet-info:after {
+            background-color: transparent!important;
+            box-shadow: none!important;
+        }
+        .bet_taste {
+            &.fsc {
+                .bet_taste_text__protrude {
+                    color: #10e7c4;
+                }
+            }
+            &.k3 {
+                .bet_taste_text__protrude {
+                    color: #10e7c4;
+                }
+            }
+        }
+        .bet_taste_info {
+            height: 4.8em;
+            position: relative;
+            z-index: 9;
+            padding: 0 1.06em;
+            .bet_taste_text__common {
+                color: #fff;
+            }
+            .bet_taste_text__protrude {
+                color: #00d3ff;
+            }
+            .bet_taste_submit {
+                width: 5.525em;
+                height: 3.053em;
+                background-image: url(../images/css_sprites.aef03dc8.png);
+                background-position-x: -76.183em;
+                background-position-y: -0.363em;
+                background-size: auto 4.071em;
+                background-repeat: no-repeat;
+                text-shadow: 0 2px 4px rgba(0,19,74,.7);
+            }
+            .bet_taste_text {
+                color: #fff;
+                text-align: center;
+                height: 4.8em;
+                margin-bottom: 2em;
+                > div {
+                    height: 50%;
+                    font-size: .88em;
+                }
+                .bet_taste_num {
+                    padding-top: 0.5em;
+                    box-sizing: border-box;
+                    span {
+                        margin: 0 4px;
+                    }
+                }
+                .bet_taste_line {
+                    width: 1px;
+                    height: 13px;
+                    background-color: #fff;
+                    margin: 0 7px;
+                }
+                .bet_taste_money {
+                    .bet_taste_money_bet {
+                        padding-right: 1.5em;
+                        text-align: left;
+                    }
+                    span {
+                        width: 35%;
+                        text-align: right;
+                        margin: 0;
+                    }
+                }
+            }
+            .bet_taste_reset, .bet_taste_submit {
+                padding: 0;
+                font-size: 1em;
+                font-family: Roboto-Bold,Roboto;
+                font-weight: 700;
+                color: #fff;
+            }
+            .bet_taste_reset {
+                width: 5.525em;
+                height: 3.053em;
+                background-image: url(../images/css_sprites.aef03dc8.png);
+                background-position-x: -63.68em;
+                background-position-y: -.363em;
+                background-size: auto 4.071em;
+                background-repeat: no-repeat;
+                color: hsla(0,0%,100%,.4);
+            }
+        }
+        
+        .bet_taste_chips  {
+            height: calc(var(--vh)*21 - 5em);
+            max-height: 6.5em;
+            position: relative;
+            z-index: 99;
+            padding: 0 1.35em;
+            .icon_next {
+                width: 1.018em;
+                height: 1.018em;
+                background-image: url(../images/css_sprites.aef03dc8.png);
+                background-position-x: -2.108em;
+                background-position-y: -.363em;
+                background-size: auto 4.071em;
+                background-repeat: no-repeat;
+            }
+            
+            .taste_chips_prev,.taste_chips_next {
+                width: 2em;
+                height: 3.05em; 
+            }
+            .icon_prev {
+                width: 1.018em;
+                height: 1.018em;
+                background-image: url(../images/css_sprites.aef03dc8.png);
+                background-position-x: -0.363em;
+                background-position-y: -0.363em;
+                background-size: auto 4.071em;
+                background-repeat: no-repeat;
+            }
+            .taste_chips_swiper_box {
+                height: 100%;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                margin-left: .5em;
+            }
+            .taste_chips_swiper {
+                height: 3.93em;
+                position: relative;
+                width: 27.55em;
+            }
+            .taste_chips_swiper_item {
+                width: 3.93em;
+                height: 100%;
+                &:not(.bet-input-panel.bet_panel_taste .bet_taste_chips .taste_chips_swiper_item.taste_chips_swiper_item_setting) {
+                    position: absolute;
+                    top: 50%;
+                    -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                }
+                &.taste_chips_swiper_item_setting {
+                    margin-right: .5em;
+                    >div {
+                        height: 100%;
+                    }
+                    
+                }
+                >div {
+                    height: 100%;
+                }
+                .taste_chip {
+                    .taste_chip_base {
+                        width: 3.427em;
+                        height: 3.427em;
+                        background-repeat: no-repeat;
+                        background-size: 13.708em 10.35em;
+                        background-image: url(../images/chip_sprites.0ee81580.png);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        &.taste_chip_setting {
+                            width: 3.344em;
+                            height: 3.344em;
+                            background-image: url(../images/setting.png);
+                            background-size: auto 100%;
+                            background-repeat: no-repeat;
+                            background-position-x: 0;
+                            background-position-y: 0;
+                        }
+                        &.taste_chip_5 {
+                            background-position: 0 -3.496em;
+                            color: #763800;
+                        }
+                        &.taste_chip_10 {
+                            background-position: -3.427em -3.496em;
+                            color: #860000;
+                        }
+                        &.taste_chip_25 {
+                            background-position: -6.854em -3.496em;
+                            color: #134d00;
+                        }
+                        &.taste_chip_50 {
+                            background-position: -10.281em 0;
+                            color: #1a008a;
+                        }
+                        &.taste_chip_100 {
+                            background-position: -10.281em -3.427em;
+                            color: #003885;
+                        }
+                        &.taste_chip_200 {
+                            background-position: 0 -6.923em;
+                            color: #850083;
+                        }
+                        &.taste_chip_500 {
+                            background-position: -3.427em -6.923em;
+                            color: #004054;
+                        }
+                        .item_chip_num {
+                            display: flex;
+                            align-items: baseline;
+                            span {
+                                font-family: Roboto;
+                                font-size: 12px;
+                                line-height: 90%;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
 .v_circle .pv .beat {
     animation: scaleDraw-data 1s ease-in-out infinite;
 }
@@ -360,6 +695,17 @@
         }
     }
 }
+.game_xyx_half {
+    padding: 0 0.35em;
+    height: 100%;
+    .game_xyx_half_item {
+        width: 50%;
+        float: left;
+        height: 50%;
+        box-sizing: border-box;
+    }
+}
+
 .taste_plays_fsc .taste_plays_swiper {
     transition: opacity .3s;
     -webkit-transform: translateZ(0);
@@ -394,9 +740,61 @@
     color: #666;
     opacity: 1;
     transition: opacity .3s;
+    &.game_xyx_half_item {
+        width: 50%;
+        float: left;
+        height: 50%;
+        box-sizing: border-box;
+    }
     .taste_unit_list {
         padding: 0 .35em;
+        &.taste_unit_half {
+            background: rgba(0,140,255,.2);
+            box-shadow: 0 2px 4px 0 rgba(0,34,115,.5);
+            border-radius: 4px 4px 0 0;
+            border-top: 1px solid hsla(0,0%,100%,.4);
+            color: #fff;
+            margin: 0 0.75vh 1.7vh;
+            padding: 0;
+            height: calc(100% - 1.7vh);
+            .taste_unit_item {
+                margin: 0;
+                background: none;
+                border-radius: 0;
+                box-shadow: none;
+                &:not(:last-child) {
+                    border-right: 0;
+                }
+                &:first-child {
+                    border-bottom-left-radius: 4px;
+                }
+            }
+            .taste_unit_name {
+                border-left: 1px solid hsla(0,0%,100%,.4);
+                border-right: 1px solid hsla(0,0%,100%,.4);
+                border-radius: 4px 4px 0 0;
+                box-sizing: border-box;
+                color: #c1e4ff;
+                font-size: .86em;
+                height: 30%;
+            }
+            .row {
+                height: 70%;
+                box-sizing: border-box;
+            }
+        }
         &.fsc {
+            &.taste_unit_half {
+                background: rgba(74,255,250,.1);
+                box-shadow: 0 2px 4px 0 rgba(0,44,39,.5);
+                .taste_unit_name {
+                    color: #c3edd6!important;
+                }
+                .taste_unit_item {
+                    background: none;
+                    box-shadow: none;
+                }
+            }
             .taste_unit_odds {
                 color: #c3edd6!important;
             }
@@ -420,6 +818,17 @@
             }
         }
         &.k3 {
+            &.taste_unit_half {
+                background: rgba(74,255,250,.1);
+                box-shadow: 0 2px 4px 0 rgba(0,44,39,.5);
+                .taste_unit_name {
+                    color: #c3edd6!important;
+                }
+                .taste_unit_item {
+                    background: none;
+                    box-shadow: none;
+                }
+            }
             .taste_unit_odds {
                 color: #c3edd6!important;
             }
@@ -451,6 +860,96 @@
             border-radius: 4px;
             border: 1px solid hsla(0,0%,100%,.41);
             color: #fff;
+
+            .nums_yxx_qw_item {
+                width: 7em;
+                position: relative;
+                &:not(:last-child) {
+                    margin-right: .71em;
+                }
+                .taste_unit_img {
+                    font-size: .78em;
+                }
+                .taste_unit_more {
+                    right: 2px;
+                    .taste_unit_imgs {
+                        margin-left: 0!important;
+                        font-size: 1em;
+                    }
+                }
+                &:not(.nums_yxx_qw_item_k3) {
+                    .taste_unit_imgs {
+                        margin-right: 0!important;
+                    }
+                }
+            }
+            .taste_unit_more {
+                position: absolute;
+                right: 4px;
+                bottom: 4px;
+                .taste_unit_more_item_1 {
+                    width: 1em;
+                    height: 1em;
+                    background-image: url(../images/css_sprites.ec4f9ade.png);
+                    background-position-x: -0.192em;
+                    background-position-y: -0.192em;
+                    background-size: auto 3.308em;
+                    background-repeat: no-repeat;
+                }
+                .taste_unit_more_item_2 {
+                    width: 1em;
+                    height: 1em;
+                    background-image: url(../images/css_sprites.ec4f9ade.png);
+                    background-position-x: -1.577em;
+                    background-position-y: -.192em;
+                    background-size: auto 3.308em;
+                    background-repeat: no-repeat;
+                }
+                .taste_unit_more_item_3 {
+                    width: 1em;
+                    height: 1em;
+                    background-image: url(../images/css_sprites.ec4f9ade.png);
+                    background-position-x: -2.962em;
+                    background-position-y: -0.192em;
+                    background-size: auto 3.308em;
+                    background-repeat: no-repeat;
+                }
+                .taste_unit_more_item_4 {
+                    width: 1em;
+                    height: 1em;
+                    background-image: url(../images/css_sprites.ec4f9ade.png);
+                    background-position-x: -4.346em;
+                    background-position-y: -.192em;
+                    background-size: auto 3.308em;
+                    background-repeat: no-repeat;
+                }
+                .taste_unit_more_item_5 {
+                    width: 1em;
+                    height: 1em;
+                    background-image: url(../images/css_sprites.ec4f9ade.png);
+                    background-position-x: -5.731em;
+                    background-position-y: -.192em;
+                    background-size: auto 3.308em;
+                    background-repeat: no-repeat;
+                }
+                .taste_unit_more_item_6 {
+                    width: 1em;
+                    height: 1em;
+                    background-image: url(../images/css_sprites.ec4f9ade.png);
+                    background-position-x: -7.115em;
+                    background-position-y: -.192em;
+                    background-size: auto 3.308em;
+                    background-repeat: no-repeat;
+                }
+                div {
+                    &:not(:last-child) {
+                        margin-bottom: 2px;
+                    }
+                }
+            }
+            &.taste_unit_item_bw {
+                opacity: 0;
+            }
             .taste_unit_text {
                 font-size: 1.43em;
                 font-weight: 700;
@@ -460,6 +959,13 @@
             .taste_unit_odds {
                 font-size: .86em;
                 color: #c1e4ff;
+                &.left_top {
+                    position: absolute;
+                    left: 0.33em;
+                    bottom: 0.33em;
+                    color: #c3edd6;
+                    line-height: 1;
+                }
             }
             .taste_unit_bets{
                 position: absolute;
@@ -514,8 +1020,227 @@
                 font-weight: 450;
                 box-sizing: border-box;
                 padding-right: .06em;
+                &.taste_unit_img_RED {
+                    margin-bottom: .23em;
+                    width: 1.657em;
+                    height: 1.657em;
+                    background-image: url(../images/css_sprites.42d662b7.png);
+                    background-position-x: -2.899em;
+                    background-position-y: -.414em;
+                    background-size: auto 7.538em;
+                    background-repeat: no-repeat;
+                    &:after {
+                        border-radius: 50%;
+                        box-shadow: 0 2px 3px rgba(0,31,87,.5);
+                        content: "";
+                        display: block;
+                    }
+                }
+                &.taste_unit_imgs {
+                    &.fsc {
+                        &:not(:last-child) {
+                            margin-right: .83em;
+                        }
+                        &.taste_unit_img_1 {
+                            width: 4.167em;
+                            height: 4.167em;
+                            background-image: url(../images/css_sprites.ec4f9ade.png);
+                            background-position-x: -57.833em;
+                            background-position-y: -0.278em;
+                            background-size: auto 4.778em;
+                            background-repeat: no-repeat;
+                        }
+                        &.taste_unit_img_2 {
+                            width: 4.167em;
+                            height: 4.167em;
+                            background-image: url(../images/css_sprites.ec4f9ade.png);
+                            background-position-x: -57.833em;
+                            background-position-y: -0.278em;
+                            background-size: auto 4.778em;
+                            background-repeat: no-repeat;
+                        }
+                        &.taste_unit_img_3 {
+                            width: 4.167em;
+                            height: 4.167em;
+                            background-image: url(../images/css_sprites.ec4f9ade.png);
+                            background-position-x: -67.278em;
+                            background-position-y: -0.278em;
+                            background-size: auto 4.778em;
+                            background-repeat: no-repeat;
+                        }
+                        &.taste_unit_img_4 {
+                            width: 4.167em;
+                            height: 4.167em;
+                            background-image: url(../images/css_sprites.ec4f9ade.png);
+                            background-position-x: -72em;
+                            background-position-y: -.278em;
+                            background-size: auto 4.778em;
+                            background-repeat: no-repeat;
+                        }
+                        &.taste_unit_img_5 {
+                            width: 4.167em;
+                            height: 4.167em;
+                            background-image: url(../images/css_sprites.ec4f9ade.png);
+                            background-position-x: -76.722em;
+                            background-position-y: -0.278em;
+                            background-size: auto 4.778em;
+                            background-repeat: no-repeat;
+                        }
+                        &.taste_unit_img_6 {
+                            width: 4.167em;
+                            height: 4.167em;
+                            background-image: url(../images/css_sprites.ec4f9ade.png);
+                            background-position-x: -81.444em;
+                            background-position-y: -0.278em;
+                            background-size: auto 4.778em;
+                            background-repeat: no-repeat;
+                        }
+                        
+                    }
+                }
                 &.fsc {
                     margin-bottom: 0.2em;
+                    &.taste_unit_img_RED {
+                        box-shadow: none;
+                        border-radius: 0;
+                        width: 2.992em;
+                        height: 1.852em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -18.309em;
+                        background-position-y: -0.356em;
+                        background-size: auto 6.127em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_BLUE {
+                        box-shadow: none;
+                        border-radius: 0;
+                        width: 2.992em;
+                        height: 1.852em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -22.013em;
+                        background-position-y: -0.356em;
+                        background-size: auto 6.127em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_GREEN {
+                        box-shadow: none;
+                        border-radius: 0;
+                        width: 2.992em;
+                        height: 1.852em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -25.718em;
+                        background-position-y: -0.356em;
+                        background-size: auto 6.127em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_111 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -82.401em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_1 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -82.401em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_222 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -89.13em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_2 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -89.13em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_333 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -95.858em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_3 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -95.858em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_444 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -102.586em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_4 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -102.586em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_555 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -109.314em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_5 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -109.314em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_666 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -116.043em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
+                    &.taste_unit_img_6 {
+                        width: 5.937em;
+                        height: 5.937em;
+                        background-image: url(../images/css_sprites.ec4f9ade.png);
+                        background-position-x: -116.043em;
+                        background-position-y: -0.396em;
+                        background-size: auto 6.807em;
+                        background-repeat: no-repeat;
+                    }
                     &.taste_unit_img_DA {
                         width: 4.274em;
                         height: 1.71em;
