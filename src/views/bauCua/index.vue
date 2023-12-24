@@ -65,7 +65,7 @@
                         <canvas
                           width="750"
                           height="470"
-                          class="fsx_canvas"
+                          class="fsx_canvas_die"
                         >
                         </canvas>
                       </div>
@@ -84,7 +84,7 @@
                         "
                       >
                         <canvas
-                          class="fsx_canvas"
+                          class="fsx_canvas_wan"
                           width="750"
                           height="470"
                         ></canvas>
@@ -380,8 +380,97 @@ export default {
 
     this.renderCanvasImageDie()
     this.renderCanvasImageWan()
+
+    // this.renderCanvasOffect()
   },
   methods: {
+    renderCanvasOffect() {
+      const canvasEle = document.querySelector('#canvas_fsc_die canvas')
+      const canvasEle2 = document.querySelector('#canvas_fsc_wan canvas')
+      const ctx = canvasEle.getContext('2d')
+      const ctx2 = canvasEle2.getContext('2d')
+
+      var frame = 0
+      // 定义碗的初始位置和摇晃参数
+      var bowlX = canvasEle.width / 2;
+      var bowlY = canvasEle.height / 2;
+      var shakeAmount = 10; // 摇晃幅度
+      var shakeSpeed = 0.1; // 摇晃速度
+
+      var image = new Image();
+      var image2 = new Image();
+      image.src = CanvasXodiDie;
+      image2.src = CanvasXodiWan;
+
+      // 绘制碗的函数
+      function drawBowl(x, y, angle, bowlImg) {
+        // 保存画布状态
+        ctx.save();
+
+        // 移到碗的中心点
+        ctx.translate(x, y);
+
+        // 旋转画布
+        ctx.rotate(angle);
+
+        // 绘制碗
+        ctx.drawImage(bowlImg, -bowlImg.width / 2, -bowlImg.height / 2);
+
+        // 恢复画布状态
+        ctx.restore();
+      }
+
+      function draw() {
+        // 清空画布
+        ctx.clearRect(0, 0, canvasEle.width, canvasEle.height);
+        ctx2.clearRect(0, 0, canvasEle2.width, canvasEle2.height);
+        
+        // 计算碗的摇晃角度和偏移量
+        var shakeAngle = Math.sin(Date.now() * shakeSpeed * frame) * shakeAmount;
+        var shakeOffsetX = Math.cos(Date.now() * shakeSpeed * frame) * shakeAmount / 2;
+        var shakeOffsetY = Math.sin(Date.now() * shakeSpeed * frame) * shakeAmount / 2;
+
+        // 绘制碗，加上摇晃角度和偏移量
+        drawBowl(bowlX + shakeOffsetX, bowlY + shakeOffsetY, shakeAngle, image);
+
+        // 循环绘制动画效果
+        requestAnimationFrame(draw);
+
+        // // 清空 Canvas
+        // ctx.clearRect(0, 0, canvasEle.width, canvasEle.height);
+        // ctx2.clearRect(0, 0, canvasEle2.width, canvasEle2.height);
+
+        // // 更新变量
+        // // var offsetx = Math.sin(Date.now() * swaySpeed) * swayAmount;
+        // // const offsetx = Math.sin(frame * speedX) * 10;
+        // // const offsety = 1;
+        // // 计算左右摇晃的偏移量
+        // var offsetx = Math.sin(frame * 1.5) * 10;
+        // var offsety = 1;
+        
+        // // 绘制图片，并应用偏移量
+        // // ctx.translate((canvasEle.width - image.width) / 2, (canvasEle.height - image.height) / 2)
+        // ctx.drawImage(image, offsetx, offsety, image.width, image.height)
+
+        // // ctx2.translate(((canvasEle2.width - image2.width) / 2), ((canvasEle2.height - image2.height) / 2))
+        // // ctx2.drawImage(image2, 0, 0, img_width - 40, img_height + 10)
+        // ctx2.drawImage(image2, offsetx, offsety, image2.width, image2.height)
+
+        // // 增加当前帧数
+        frame++;
+      }
+
+      // 在图片加载完成后调用动画循环函数开始动画
+      image.onload = function() {
+        draw()
+        // setInterval(() => {
+        //   animate();
+        // }, 50)
+      };
+      // image2.onload = function() {
+      //   animate();
+      // };
+    },
     renderCanvasImageDie() {
       const canvasEle = document.querySelector('#canvas_fsc_die canvas')
       const ctx = canvasEle.getContext('2d')
