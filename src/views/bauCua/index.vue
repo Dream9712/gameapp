@@ -176,6 +176,7 @@
                                       }"
                                       v-for="j in i"
                                       :key="j.name"
+                                      @click="handleBollClick(j)"
                                     >
                                       <div
                                         v-if="item.type == 'index1'"
@@ -252,7 +253,7 @@
                                           flex="cross:center main:center"
                                           class="taste_unit_bets_num"
                                         >
-                                          0
+                                          1
                                         </div>
                                         <div
                                           class="taste_unit_bets_img taste_unit_bets_img_0 chips_HJ_DA"
@@ -260,13 +261,13 @@
                                       </div>
                                       <div
                                         class="taste_unit_bets taste_unit_bets_multiple"
-                                        style="display: none"
+                                        v-show="getDownGamePrice(j)"
                                       >
                                         <div
                                           flex="cross:center main:center"
                                           class="taste_unit_bets_num"
                                         >
-                                          0
+                                          {{ getDownGamePrice(j) }}K
                                         </div>
                                         <div
                                           class="taste_unit_bets_img taste_unit_bets_img_multiple"
@@ -442,6 +443,7 @@
                     v-for="(i, index) in betNumberList"
                     :key="i.name"
                     :style="{ 'left': index * chipEm + 'em' }"
+                    @click="chipIndex = index"
                   >
                     <div flex="main:center cross:center" class="taste_chip">
                       <div
@@ -511,7 +513,7 @@
                   >Số tiền</span
                 >
                 <div flex-box="0" class="bet_taste_line"></div>
-                <div flex-box="8" class="bet_taste_money_bet">0</div>
+                <div flex-box="8" class="bet_taste_money_bet">{{ userInfo.totalPrice }}</div>
               </div>
             </div>
             <button class="bet_taste_submit">Đặt cược</button>
@@ -567,7 +569,12 @@ export default {
       slideIndex: 0,
       // chips
       chipEm: 3.93,
-      chipIndex: 0
+      chipIndex: 0,
+      // 总数
+      userInfo: {
+        totalPrice: 1000000000,
+        downGame: {}
+      }
     };
   },
   computed: {
@@ -591,6 +598,25 @@ export default {
     this.renderCanvasChipRun()
   },
   methods: {
+    getDownGamePrice(j) {
+      let num = this.userInfo.downGame[j.name] || 0
+      if (num > 0) {
+        num = num / 1000
+      }
+      return num
+    },
+    // 点击下单
+    handleBollClick(j) {
+      console.log(j, '----')
+      const item = this.betNumberList.find((ele, eleIndex) => eleIndex == this.chipIndex)
+      console.log(item, 'item---')
+      if (!this.userInfo.downGame[j.name]) {
+        this.userInfo.downGame[j.name] = 0 + item.value
+      } else {
+        this.userInfo.downGame[j.name] += item.value
+      }
+      this.userInfo.totalPrice -= item.value
+    },
     handleChipClick(type) {
       if (type == 'prev') {
         if (this.chipIndex > 0) {
@@ -785,6 +811,10 @@ export default {
       };
     },
     resetAction() {
+      this.userInfo = {
+        totalPrice: 1000000000,
+        downGame: {}
+      }
       this.timestamp = 50;
       this.timeLeftRotate = 180;
       this.timeRightRotate = 180;
@@ -873,7 +903,7 @@ export default {
       this.mySwiper = new Swiper(".swiper-container", {
         // slidesPerView: 3,
         spaceBetween: 30,
-        loop: true,
+        loop: false,
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
