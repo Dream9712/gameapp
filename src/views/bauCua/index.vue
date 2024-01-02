@@ -553,8 +553,8 @@ export default {
       ...dataInfo,
       // 定时
       timer: null,
-      timestamp: 50,
-      maxTime: 50,
+      timestamp: 10,
+      maxTime: 10,
       timeLeftRotate: 180,
       timeRightRotate: 180,
       // 结果
@@ -574,7 +574,10 @@ export default {
       userInfo: {
         totalPrice: 1000000000,
         downGame: {}
-      }
+      },
+      // canvas
+      canvasDie: null,
+      canvasWan: null
     };
   },
   computed: {
@@ -593,7 +596,7 @@ export default {
     // this.renderCanvasImageDie()
     // this.renderCanvasImageWan()
 
-    this.renderCanvasOffect()
+    this.renderCanvasOffect(false)
 
     this.renderCanvasChipRun()
   },
@@ -712,7 +715,8 @@ export default {
         draw();
       };
     },
-    renderCanvasOffect() {
+    renderCanvasOffect(flag) {
+      const _this = this
       const canvasEle = document.querySelector('#canvas_fsc_die canvas')
       const canvasEle2 = document.querySelector('#canvas_fsc_wan canvas')
       const ctx = canvasEle.getContext('2d')
@@ -720,95 +724,101 @@ export default {
 
       var frame = 0
       var offset = 0
+      var sum_time = 0
 
       var image = new Image();
       var image2 = new Image();
       image.src = CanvasXodiDie;
       image2.src = CanvasXodiWan;
-
-      function draw() {
-        // 清空画布
-        ctx.clearRect(0, 0, canvasEle.width, canvasEle.height);
-        ctx2.clearRect(0, 0, canvasEle2.width, canvasEle2.height);
-
-        // 循环绘制动画效果
-        // requestAnimationFrame(draw);
-
-        // 更新变量
-        // var offsetx = Math.sin(Date.now() * swaySpeed) * swayAmount;
-        // const offsetx = Math.sin(frame * speedX) * 10;
-        // const offsety = 1;
-        // 计算左右摇晃的偏移量
-        offset = Math.sin(frame * 1) * 10;
-        
-        // // 绘制图片，并应用偏移量
-        // ctx.translate((canvasEle.width - image.width) / 2, (canvasEle.height - image.height) / 2)
-        ctx.drawImage(image, offset, 0, image.width, image.height)
-
-        // // ctx2.translate(((canvasEle2.width - image2.width) / 2), ((canvasEle2.height - image2.height) / 2))
-        // // ctx2.drawImage(image2, 0, 0, img_width - 40, img_height + 10)
-        ctx2.drawImage(image2, offset, 0, image2.width, image2.height)
-
-        // // 增加当前帧数
-        frame++;
-
-        requestAnimationFrame(draw);
-      }
-
-      // 在图片加载完成后调用动画循环函数开始动画
-      image.onload = function() {
-        draw()
-        // setInterval(() => {
-        //   animate();
-        // }, 50)
-      };
-      // image2.onload = function() {
-      //   animate();
-      // };
-    },
-    renderCanvasImageDie() {
-      const canvasEle = document.querySelector("#canvas_fsc_die canvas");
-      const ctx = canvasEle.getContext("2d");
-
-      const myImg = new Image();
-      myImg.src = CanvasXodiDie;
-
-      const img_width = 300;
-      const img_height = 220;
-      myImg.onload = () => {
-        ctx.translate(
-          (canvasEle.width - img_width) / 2,
-          (canvasEle.height - img_height) / 2 + 30
-        );
-        ctx.drawImage(myImg, 0, 0, img_width, img_height);
-      };
-    },
-    renderCanvasImageWan() {
-      const canvasEle = document.querySelector("#canvas_fsc_wan canvas");
-      const ctx = canvasEle.getContext("2d");
-
-      const myImg = new Image();
-      myImg.src = CanvasXodiWan;
-
-      const img_width = 200;
-      const img_height = 200;
-
-      // 开的位置还是收的位置
-      const siwtch_flag = 1;
-
-      myImg.onload = () => {
-        // 开
-        if (siwtch_flag == 1) {
-          ctx.translate(canvasEle.width - img_width - 80, img_height / 4);
-          ctx.drawImage(myImg, 0, 0, img_width, img_height);
-        } else {
-          ctx.translate(
-            (canvasEle.width - img_width) / 2 - 30,
-            (canvasEle.height - img_height) / 2 - 30
-          );
-          ctx.drawImage(myImg, 0, 0, 300 - 40, 220 + 10);
+      
+      if (!flag) {
+        ctx2.translate(0, 100);
+        function draw() {
+          // 清空画布
+          ctx.clearRect(0, 0, canvasEle.width, canvasEle.height);
+          ctx2.clearRect(0, 0, canvasEle2.width, canvasEle2.height);
+          // // 绘制图片，并应用偏移量
+          ctx.drawImage(image, offset, 0, image.width, image.height)
+          ctx2.drawImage(image2, offset, 0, image2.width, image2.height)
         }
-      };
+        image.onload = function() {
+          draw()
+        };
+      } else {
+        function draw() {
+          offset = Math.sin(frame * 1) * 10;
+          // 清空画布
+          ctx.clearRect(0, 0, canvasEle.width, canvasEle.height);
+          ctx2.clearRect(0, 0, canvasEle2.width, canvasEle2.height);
+          // // 绘制图片，并应用偏移量
+          ctx.drawImage(image, offset, 0, image.width, image.height)
+          ctx2.drawImage(image2, offset, 0, image2.width, image2.height)
+          frame++;
+          sum_time++
+          if (sum_time < 100) {
+            requestAnimationFrame(draw);
+          } else {
+            _this.runCanvasImage(canvasEle2, image2)
+          }
+        }
+        image.onload = function() {
+          draw()
+        };
+      }
+    },
+    runCanvasImage(canvas, img) {
+      const ctx = canvas.getContext('2d')
+
+      // 创建双缓冲的临时 Canvas
+      var tempCanvas = document.createElement('canvas');
+      var tempCtx = tempCanvas.getContext('2d');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+
+      var startX = 0;
+      var startY = 0;
+      var targetX = 200;
+      var targetY = -80;
+
+      // 定义动画持续时间和帧率
+      var duration = 1000; // 1秒钟
+      var fps = 60; // 60帧每秒
+      var interval = duration / fps;
+
+      // 计算每一帧需要移动的距离
+      var moveX = targetX - startX;
+      var moveY = targetY - startY;
+      var stepX = moveX / (duration / interval);
+      var stepY = moveY / (duration / interval);
+
+      // 定义动画函数
+      function animate() {
+        // 清空临时 Canvas
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+        // 在临时 Canvas 上绘制图像
+        tempCtx.drawImage(img, startX, startY);
+        // 清空画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.drawImage(tempCanvas, 0, 0);
+
+        // 更新位置
+        startX += stepX;
+        startY += stepY;
+
+        // 判断是否达到目标位置
+        if (Math.abs(startX - targetX) > Math.abs(stepX) || Math.abs(startY - targetY) > Math.abs(stepY)) {
+          // 在下一帧继续移动
+          requestAnimationFrame(animate);
+        } else {
+          // 达到目标位置
+          startX = targetX;
+          startY = targetY;
+          ctx.drawImage(img, startX, startY, img.width, img.height);
+        }
+      }
+      animate();
     },
     resetAction() {
       this.userInfo = {
@@ -818,6 +828,7 @@ export default {
       this.timestamp = 50;
       this.timeLeftRotate = 180;
       this.timeRightRotate = 180;
+      this.renderCanvasOffect(false)
       // 结果
       this.game_result = {
         betStatus: 0,
@@ -838,7 +849,11 @@ export default {
         }
         if (this.timestamp == 0) {
           clearInterval(this.timer);
-          this.getGameResult();
+          
+          this.renderCanvasOffect(true)
+          setTimeout(() => {
+            this.getGameResult();
+          }, 3000)
         }
       }, 1000);
     },
